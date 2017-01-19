@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="app">
+		<h2>两种自定义指令的方法</h2>
+		<div ng-controller="Con1">
+			{{name}}
+			<div dy></div>
+		</div>
+		<hr />
+		<div ng-controller="con2">
+			{{name}}
+			<zdy></zdy>
+		</div>
+		<p class="alert alert-success">同一个页面只能有一个ng-app</p>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+			.directive("zdy", zdy1)
+			.controller('con2', ['$scope', dataSet])
+			.directive("dy", function() {
+				return {
+					restrict: "AE",
+					template: "<h4>我是第一个自定义的指令{{name}}</h4>",
+					link: function($scope, ele, attr, controller) {
+						console.log("这里是link");
+					},
+					controller: function($scope, $element, $attrs) {
+						console.log("这是一个con,好像是我先执行的");
+					}
+				}
+			})
+			.controller("Con1", function($scope) {
+				$scope.name = "(好复杂啊)";
+			})
+
+		function zdy1() {
+			var directive = {
+				restrict: "AE",
+				template: "<h4>我是第二个自定义的指令</h4>"
+			}
+			return directive;
+		}
+
+		function dataSet($scope) {
+			$scope.name = "(好了那么一丢丢)"
+		}
+	</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">
+		<h2>控制器方法</h2>
+		<div ng-controller="myController">		
+			<input type="text" ng-model="firstName" /><br />
+			<input type="text" ng-model="lastName" /><br />
+			姓名：{{fullNume()}}
+			<p class="alert alert-success">控制器是 JavaScript 对象，由标准的 JavaScript 对象的构造函数 创建.</p>
+		</div>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function($scope) {
+				$scope.fullNume=function(){
+					return $scope.firstName+" "+$scope.lastName;
+				}
+				
+			});
+	</script>
+
+</html>

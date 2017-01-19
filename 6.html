@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">
+		<h2>Scope的作用域</h2>
+		<h4>我在控制器外面:{{lastname}}</h4>
+		<div ng-controller="myController">		
+			<h4>我在控制内部：{{lastname}}</h4>
+			<ul class="media-list">
+				<li ng-repeat="item in names">{{item}}</li>
+			</ul>
+			<p class="alert alert-success">$rootScope可作用于整个应用(ng-app)中</p>
+		</div>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function($scope,$rootScope) {
+				$scope.names=['Tom','Jack','Mack'];
+				$rootScope.lastname="叶良辰"
+			});
+	</script>
+
+</html>

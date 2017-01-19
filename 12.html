@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">	
+			<h2>ng-options绑定下拉框</h2>
+			<select ng-init="selectedName = sites[0]" ng-model="selectedName" ng-options="x.site for x in sites" >			
+			</select>
+			<p>我可以选择一个对象：{{selectedName}}</p>
+			<h2>ng-repeat绑定下拉框</h2>
+			<select ng-model="selectname" ng-init="selectname=sites[0].url">
+				<option ng-repeat="x in sites" value="{{x.url}}" >{{x.site}}</option>
+			</select>
+			<p>我只能选择一个字符串：{{selectname}}</p>
+		</div>	
+		<!--<p class="alert alert-success"></p>-->
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function($scope,$http) {
+				$scope.sites = [
+				    {site : "Google", url : "http://www.google.com"},
+				    {site : "Runoob", url : "http://www.runoob.com"},
+				    {site : "Taobao", url : "http://www.taobao.com"}
+				];
+			});	
+	</script>
+
+</html>

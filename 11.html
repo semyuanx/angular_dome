@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">	
+			<h2>$http</h2>
+			<ul class="media-list">
+				<li ng-repeat="item in names">
+					{{item.Name+":"+item.Url}}
+				</li>
+			</ul>		
+		</div>	
+		<p class="alert alert-success">以上代码也可以用于读取数据库数据。</p>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function($scope,$http) {
+				$http.get("database.json").success(function(rep){
+					$scope.names = rep.sites;
+				})
+			});			
+	</script>
+
+</html>

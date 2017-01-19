@@ -1,2 +1,0 @@
-angular指令：
-	ng-init	初始化angularjs的值

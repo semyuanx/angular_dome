@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">	
+			<h2>过滤器</h2>
+			<p>姓名为{{ lastname | uppercase }}</p>
+			<p>姓名为{{ firstname | lowercase }}</p>			
+			<hr />
+			<h2>过滤器</h2>
+			<input type="number" ng-model="num" />
+			<input type="number" ng-model="price" />
+			<p>总价：{{ (num*price) | currency}}</p>
+			<h2>向指令添加过滤器</h2>
+			<ul class="media-list">
+				<li ng-repeat="item in names | orderBy:'country'">
+					{{item.name+" "+item.country}}
+				</li>
+			</ul>
+			<hr />
+			<h2>过滤输入</h2>
+			<input type="text" ng-model="test" />
+			<ul class="media-list">
+				<li ng-repeat="item in names | filter:test | orderBy:'country'">
+					{{item.name+" "+item.country}}
+				</li>
+			</ul>
+		</div>	
+		<p class="alert alert-success">filter 过滤器从数组中选择一个子集</p>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function($scope) {
+				$scope.lastname="abc";	
+				$scope.firstname="DEF";
+				$scope.names=[
+					{name:"Jarry",country:'Norway'},
+					{name:"Tom",country:'China'},
+					{name:"Jack",country:'Island'}					
+				];
+			});
+	</script>
+
+</html>

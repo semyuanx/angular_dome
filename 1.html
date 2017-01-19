@@ -3,10 +3,32 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css"/>
+		<style type="text/css">
+			body{
+				padding: 10px;
+			}
+		</style>
 	</head>
 	<body ng-app="">
+		<!-- ng-bind -->
 		<p>名字：<input type="text" ng-model="name" /></p>
 		<h1>Hello {{ name }}</h1><span ng-bind="name"></span>
+		<hr />
+		<!-- ng-init -->
+		<div ng-init="firstname = 'John'">
+			<p>姓名为：<span ng-bind="firstname"></span></p>
+		</div>
+		<hr />
+		<!-- 表达式 -->
+		<p>我的第一个表达式：{{ 5 + 5 }}</p>
+		<hr />
+		<!-- 应用 -->
+		名：<input type="text" ng-model="name1" />
+		姓：<input type="text" ng-model="name2" />
+		<br />
+		姓名：{{name2+name1}}
+		<hr />
 		
 	</body>
 	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>

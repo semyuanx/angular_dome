@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+			input.ng-invalid{
+				background: red;
+			}
+			input.ng-valid{
+				background: yellow;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">
+		<div ng-controller="myController">
+			<h4>验证用户输入</h4>
+			<form name="myForm">
+				Email:
+				<input type="email" name="myAddress" ng-model="text" />
+				<span class="text-error" ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+			</form>
+			<hr />
+			<h4>应用状态</h4>
+			<form name="formConter" ng-init="myText='ceshi@gmail.com'">
+				<input type="email" name="myAddress" ng-model="myText" required />
+				<h3>请在输入框输入信息，查看下面状态</h3>
+				<p>Valid: {{formConter.myAddress.$valid}} (如果输入的值是合法的则为 true)。</p>
+				<p>Dirty: {{formConter.myAddress.$dirty}} (如果值改变则为 true)。</p>
+				<p>Touched: {{formConter.myAddress.$touched}} (如果通过触屏点击则为 true)。</p>
+			</form>
+			<hr />
+			<h4>表单不同状态下的类</h4>
+			<form name="myFrom1">
+				输入你的姓名：<input type="text" name="myAddress" ng-model="address" required />
+			</form>
+			<p class="alert alert-success">ng-model会根据表单域的状态添加/移除以下类：ng-empty | ng-not-empty | ng-touched | ng-untouched | ng-valid | ng-invalid | ng-dirty | ng-pending | ng-pristine</p>
+		</div>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function() {
+
+			});
+	</script>
+
+</html>

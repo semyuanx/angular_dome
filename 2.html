@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css"/>
+		<style type="text/css">
+			body{
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body ng-app="app" >
+		<div ng-controller="myCtrl">
+			{{firstName+' '+lastName}}
+		</div>
+		<hr />
+		<div ng-init="quantity=1;cost=5">
+			<input type="text" ng-model="quantity" />
+			<input type="text" ng-model="cost" />
+			总价：{{ quantity * cost}}
+		</div>
+		<hr />
+		<!-- 输入bootstrap class名字 (btn,text-error....)-->
+		<h4>输入bootstrap里的类名试一下</h4>
+		<input type="text" ng-model="className" />
+		<br />
+		<p class="{{className}}">123456</p>
+		<hr />
+		<div ng-controller="myRepeat">
+			<h4>我是循环</h4>
+			<ul class="media-list">
+				<li class="control-group" ng-repeat="item in names">
+					我的名字叫+{{item.name}},+我来自{{item.country}}
+				</li>
+			</ul>
+		</div>
+		<hr />
+		<h4>我是自定义指令</h4>
+		<my-directive></my-directive>
+		<div class="my-directive"></div>
+		<div my-directive></div>
+		<p class="text-info">需要设置restrict：A(作为属性使用),E(作为元素名使用),C(作为类名使用),M(作为注释使用)</p>
+		<hr />
+		
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("app",[])
+		.controller("myCtrl",function($scope){
+			$scope.firstName = "john";
+			$scope.lastName = "Doe";
+		})
+		.controller("myRepeat",function($scope){
+			$scope.names=[
+				{name:'Jani',country:"Norway"},
+				{name:'Mark',country:"Islan"},
+				{name:'Jiena',country:"China"}
+			]
+		})
+		.directive("myDirective",function(){
+			return {
+				restrict : "C",
+				template : "<h1>我是自定义的指令！</h1>"
+			}
+		})
+	</script>
+</html>

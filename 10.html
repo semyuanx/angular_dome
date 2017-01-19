@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">	
+			<h2>Service</h2>
+			<p>当前地址为:{{myUrl}}</p>
+			<p class="alert alert-success">$location它可以返回当前页面的 URL地址。</p>
+			<hr />
+			<h2>$http</h2>
+			<p>我是$http获取来的信息:{{myData}}</p>
+			<p class="alert alert-success">$http 与jqury内置ajax类似,详情查看:http://www.runoob.com/angularjs/angularjs-http.html</p>
+			<hr />
+			<h2>$timeout</h2>
+			<p>{{myHead}}</p>
+			<hr />
+			<h2>$interval</h2>
+			<p>{{theTime}}</p>
+			<hr />
+			<h2>自定义服务</h2>
+			<p>{{newName}}</p>
+			<hr />
+			<h2>过滤器中使用自定义服务</h2>
+			<input type="text" ng-model="myFilter" placeholder="输入ABC或者abc" />
+			<p>{{myFilter | myFormat }}</p>
+		</div>	
+		
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function($scope,username,$location,$http,$timeout,$interval) {
+				$scope.myUrl = $location.absUrl();
+				$http.get("data.htm").then(function(data){
+					$scope.myData = data.data;
+				});
+				$timeout(function(){
+					$scope.myHead="你在搞么子？"
+				},2000);
+				$interval(function(){
+					$scope.theTime= new Date().toLocaleTimeString();
+				},1000);
+				$scope.newName = username.chgeName("abc")
+				
+			})
+			.service("username",function(){
+				this.chgeName = function(x){
+					var _name = "";
+					switch(x){
+						case "abc":
+							_name="大坏蛋";
+							break;
+						case "ABC":
+							_name="小坏嗲";
+							break;
+					}
+					return _name;
+				}
+			})
+			.filter('myFormat',['username',function(username){
+				return function(x){
+					return username.chgeName(x);
+				}
+			}]);
+	</script>
+
+</html>
