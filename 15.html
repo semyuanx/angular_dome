@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">	
+			<h2>事件</h2>
+			<hr />
+			<h3>ng-click</h3>
+			<button ng-click="count=count+1">点我！</button>
+			<p>{{count}}</p>
+			<hr />
+			<button ng-click="toggle">显示/隐藏</button>
+		</div>	
+		<!--<p class="alert alert-success"></p>-->
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp",[])
+		.controller('myController',function($scope){
+			$scope.count = 0;
+			$scope.toggle=function(){
+				
+			}
+		})
+	</script>
+
+</html>

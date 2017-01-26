@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">	
+			<h2>HTML DOM</h2>
+			<hr />
+			<h3>ng-disabled</h3>
+			<div ng-init="mySwitch=true">
+				<button class="btn btn-block btn-warning" ng-disabled="mySwitch">点我！</button>
+				<br />
+				<input type="text" ng-model = "mySwitch" />
+				<p>{{ mySwitch }}</p>
+			</div>
+			<hr />
+			<h3 ng-init="pStatus=false">ng-show</h3>
+			<p ng-show="pStatus">我是可见的</p>
+			<p ng-show="!pStatus" style="background: red;">我是第二个可见的</p>
+			<br />
+			<input type="text" ng-model = "pStatus" />
+			<p>{{pStatus}}</p>
+			<h3 ng-init="psStatus=false">ng-hide</h3>
+			<p ng-hide="psStatus">我是可见的</p>
+			<p ng-hide="!psStatus" style="background: green;">我是第二个可见的</p>
+			<br />
+			<input type="text" ng-model = "psStatus" />
+			<p>{{pStatus}}</p>
+		</div>	
+	<!--	<p class="alert alert-success">ng-hide</p>-->
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+
+	</script>
+
+</html>

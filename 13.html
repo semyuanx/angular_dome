@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">	
+			<h2>表格</h2>
+			<table class="table table-bordered">
+				<tr ng-repeat = "item in sites">
+					<td ng-if="$odd" style="background-color:#f1f1f1;">{{ $index+1 }}</td>
+					<td ng-if="$even">{{ $index+1 }}</td>
+					<td ng-if="$odd" >{{ item.url }}</td>
+					<td ng-if="$even">{{ item.url }}</td>
+				</tr>
+			</table>
+		</div>	
+		<p class="alert alert-success"> $odd 与 $even作用于同一列</p>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("myApp", [])
+			.controller("myController", function($scope,$http) {
+				$scope.sites = [
+				    {site : "Google", url : "http://www.google.com"},
+				    {site : "Runoob", url : "http://www.runoob.com"},
+				    {site : "Taobao", url : "http://www.taobao.com"}
+				];
+			});	
+	</script>
+
+</html>
