@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">
+			<h3>表单及验证</h3>
+			<hr />
+			<form name="myForm">
+				<label for="name">姓名：</label>
+				<input id="user" name="user" type="text" ng-model="user.name" required />	
+				<span class="text-error" ng-show="myForm.user.$error.required" >请填写姓名</span>
+				<label for="email">邮箱：</label>
+				<input type="text" name="email" id="email" ng-model="user.email" required />
+				<span class="text-error" ng-show="myForm.email.$error.required">必须填写邮箱</span>
+				<span class="text-error" ng-show="myForm.email.$error.email">非法的邮箱地址</span>
+				<br />
+				<button class="btn btn-success" ng-click="reset()">重置</button>
+			</form>
+		</div>	
+		<br />
+		<p class="alert alert-success">angular.copy()为angular内置方法，复制数组或对象</p>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module("myApp",[])
+		.controller("myController",function($scope){
+			$scope.master = { name:"Sem",email:"156415@qq.com" };
+			$scope.reset=function(){
+				$scope.user = angular.copy($scope.master);
+			}
+			$scope.reset();
+		})
+	</script>
+</html>

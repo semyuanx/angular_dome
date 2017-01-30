@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css" />
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">	
+		<div ng-controller="myController">
+			<h3>指令与控制器</h3>
+			<hr />
+			{{ firstname + lastname }}
+			<hr />
+			<my-dir></my-dir>
+		</div>	
+		<br />
+		<p class="alert alert-success">"16.js" 包含了应用模块的定义程序， "16-1.js" 文件包含了控制器</p>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="lib/16.js" ></script>
+	<script type="text/javascript" src="lib/16-1.js" ></script>
+</html>

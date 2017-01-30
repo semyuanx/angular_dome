@@ -20,17 +20,20 @@
 			<button ng-click="count=count+1">点我！</button>
 			<p>{{count}}</p>
 			<hr />
-			<button ng-click="toggle">显示/隐藏</button>
+			<span ng-show="choseView">我想要显示</span>
+			<button ng-click="toggle()">显示/隐藏</button>
 		</div>	
-		<!--<p class="alert alert-success"></p>-->
+		<br />
+		<p class="alert alert-success">ng-click="toggle()",页面调用方法必须加括号</p>
 	</body>
 	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		angular.module("myApp",[])
 		.controller('myController',function($scope){
 			$scope.count = 0;
+			$scope.choseView=true;
 			$scope.toggle=function(){
-				
+				$scope.choseView=!$scope.choseView;
 			}
 		})
 	</script>
