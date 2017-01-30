@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<style>
+			div {
+			  transition: all linear 0.5s;
+			  background-color: lightblue;
+			  height: 100px;
+			  width: 100%;
+			  position: relative;
+			  top: 0;
+			  left: 0;
+			}			
+			.ng-hide {
+			  height: 0;
+			  width: 0;
+			  background-color: transparent;
+			  top:-200px;
+			  left: 200px;
+			}
+			
+		</style>
+		<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular-animate.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		隐藏与现实DIV: <input type="checkbox" ng-model="myCheck" />
+		<div ng-hide="myCheck" style="width: 300px;height: 200px;background: red;"></div>
+		<p class="alert alert-success">ngAnimate 模型并不能使 HTML 元素产生动画，但是 ngAnimate 会监测事件，类似隐藏显示 HTML 元素 ，如果事件发生 ngAnimate 就会使用预定义的 class 来设置 HTML 元素的动画。</p>
+	</body>	
+	<script>
+		var app = angular.module("myApp",["ngAnimate"]);
+		app.controller('myController',function($scope){
+			
+		})
+	
+	</script>
+</html>

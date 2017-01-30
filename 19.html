@@ -14,27 +14,28 @@
 
 	<body ng-app="myApp">	
 		<div ng-controller="myController">
-			<h3>API</h3>
+			<h3>表单</h3>
 			<hr />
-			<p>{{x1}}</p>
-			<p>{{x2}}</p>
-			<p>{{x3}}</p>
-			<p>{{x4}}</p>
-			<p>{{x5}}</p>
+			<form novalidate>
+				<label for="name">姓名：</label>
+				<input id="name" type="text" ng-model="user.name" />				
+				<label for="age">年龄：</label>
+				<input type="text" id="age" ng-model="user.age" /><br />
+				<button class="btn btn-success" ng-click="reset()">重置</button>
+			</form>
 		</div>	
 		<br />
-		<p class="alert alert-success">angular.XXX()为angular全局API.所有内置API已用console打印出</p>
+		<p class="alert alert-success">angular.copy()为angular内置方法，复制数组或对象</p>
 	</body>
 	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var app = angular.module("myApp",[])
 		.controller("myController",function($scope){
-			$scope.x1 = "sEm";
-			$scope.x2 = angular.lowercase($scope.x1);
-			$scope.x3 = angular.uppercase($scope.x1);
-			$scope.x4 = angular.isString($scope.x1);
-			$scope.x5 = angular.isNumber($scope.x1);
-			console.log(angular)
+			$scope.master = { name:"Sem",age:18 };
+			$scope.reset=function(){
+				$scope.user = angular.copy($scope.master);
+			}
+			$scope.reset();
 		})
 	</script>
 </html>

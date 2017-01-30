@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+		<style type="text/css">
+			body {
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body ng-app="myApp">
+		<div ng-controller="myController">
+			<h3>bootstrap</h3>
+			<hr />
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Edit</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="user in users">
+						<td>
+							<button class="btn" ng-click="editUser(user.id)">
+								<span class="accordion">编辑</span>
+							</button>
+						</td>
+						<td>
+							{{user.fName}}
+						</td>
+						<td>
+							{{user.lName}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr />
+			<button class="btn btn-success" ng-click = "addUser()">
+				<span class="glyphicon"></span>创建新用户
+			</button>
+			<hr />
+			<form class="form-horizontal" ng-show="edit">
+				<h4>修改用户</h4>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">姓：</label>
+					<div class="col-sm-10">
+						<input type="text" ng-model="fName" class="" placeholder="姓" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">名：</label>
+					<div class="col-sm-10">
+						<input type="text" ng-model="lName" placeholder="名" />
+					</div>
+				</div>
+				<input type="submit" ng-click="subChgeVal()" class="btn btn-success" value="修改"/>
+			</form>
+			<form class="form-horizontal" ng-show="add">
+				<h4>增加新用户</h4>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">姓：</label>
+					<div class="col-sm-10">
+						<input type="text" ng-model="newFName"  class="" placeholder="姓" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">名：</label>
+					<div class="col-sm-10">
+						<input type="text" ng-model="newLName" placeholder="名" />
+					</div>
+				</div>
+				<input type="submit" ng-click="subAddUser()" class="btn btn-success" value="增加"/>
+			</form>
+		</div>
+		<br />
+		<p class="alert alert-success">tool表格,暂未完成。问题：新增加的数据无法进行操作</p>
+	</body>
+	<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var app = angular.module("myApp", [])
+			.controller("myController", function($scope) {
+				$scope.fName = "";
+				$scope.lName = "";
+				$scope.newFName="";
+				$scope.newLName="";
+				$scope.id="";
+				$scope.newUser={};
+				$scope.users = [{
+					id: 1,
+					fName: "Huge",
+					lName: "Page"
+				}, {
+					id: 2,
+					fName: "Kim",
+					lName: "Pim"
+				}, {
+					id: 3,
+					fName: "Sal",
+					lName: "Smith"
+				}, {
+					id: 4,
+					fName: "Jack",
+					lName: "Jones"
+				}, {
+					id: 5,
+					fName: "John",
+					lName: "Doe"
+				}, {
+					id: 6,
+					fName: "Peter",
+					lName: "Pan"
+				}];
+				$scope.edit = false;
+				$scope.add = false;
+				$scope.editUser = function(_val){
+					$scope.edit = true;
+					$scope.add = false;
+					if(_val>0){
+						var _thisUser =  $scope.users[_val-1];
+						$scope.fName = $scope.users[_val-1].fName;
+						$scope.lName = $scope.users[_val-1].lName;	
+						$scope.id=$scope.users[_val-1].id;
+					}
+				};
+				$scope.subChgeVal = function(){
+					console.log($scope.users[$scope.id])
+					if($scope.id){
+						$scope.users[$scope.id].fName = $scope.fName;
+						$scope.users[$scope.id].lName = $scope.lName;
+					}else{
+						
+					}
+				};
+				$scope.addUser = function(){
+					$scope.edit = false;
+					$scope.add = true;
+				};
+				$scope.subAddUser = function(){
+					$scope.newUser.lName=$scope.newFName;
+					$scope.newUser.fName=$scope.newLName;
+					$scope.newUser.id=$scope.users.length+1;
+					$scope.users.push($scope.newUser);
+				}
+				
+			})
+	</script>
+
+</html>

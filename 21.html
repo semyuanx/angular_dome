@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular--dome</title>
+		<link rel="stylesheet" href="//apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+		<script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body ng-app="app" ng-controller="myController">
+		<div ng-include="'head.html'"></div>
+		<p class="alert alert-success">引用公共部分"'head.htm'"，head.htm被引入</p>
+	</body>	
+	<script>
+		var app = angular.module("app",[]);
+		app.controller('myController',function($scope){
+			 $scope.txt = "我是被引用的公共部分";
+			$scope.arr=["张三","李四","王五","赵六"];
+		})
+	
+	</script>
+</html>
