@@ -1,0 +1,11 @@
+app.config(["$routeProvider",function($routeProvider){
+	$$routeProvider
+		.when("/",{
+			templateUrl:"subpage1.html",
+			controller:"indexController"
+		})
+		.when("/page",{
+			templateUrl:"subpage2.html",
+			controller:"page2Controller"
+		})
+}])

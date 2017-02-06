@@ -14,12 +14,9 @@
 	        <button ng-click = "square()">X<sup>2</sup></button>
 	        <p>结果: {{result}}</p>
 	    </div>
-		<p class="alert alert-success">5个核心组件用来作为依赖注入: value | factory | service | provider | constant </p>
+		<p class="alert alert-success">5个核心组件用来作为依赖注入: value(创建变量，用于向控制器传递值) | factory(是一个函数用于返回值) | service | provider | constant </p>
 	</body>	
 	 <script>
-	 	$(document).on("click",function(e){
-	 		console.log(e.clientX,e.clientY)
-	 	})
          var mainApp = angular.module("mainApp", []);
          
          mainApp.config(function($provide) {
